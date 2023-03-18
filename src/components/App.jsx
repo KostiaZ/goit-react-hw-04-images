@@ -17,11 +17,9 @@ export default function App() {
   const [openModal, setIsOpenModal] = useState(false);
 
   useEffect(() => {
-    // код, который будет вызываться только при изменении searchQuery или page
     getData();
   }, [searchQuery, page]);
   useEffect(() => {
-    // код, который будет вызываться при каждом рендере компонента
     handleScroll();
   });
 
