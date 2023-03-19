@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import SearchBar from './Searchbar/Searchbar';
-import ImageGallery from './ImageGallery/ImageGallery';
-import Modal from './Modal/Modal';
-import Button from './Button/Button';
-import Spinner from './Loader/Loader';
+import SearchBar from "./Searchbar/Searchbar";
+import ImageGallery from "./ImageGallery/ImageGallery";
+import Modal from "./Modal/Modal";
+import Button from "./Button/Button";
+import Spinner from "./Loader/Loader";
 
-import fetchImages from './Service';
+import fetchImages from "./Service";
 
 export default function App() {
-  const [modalContent, setModalContent] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [modalContent, setModalContent] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(1);
   const [visibleImages, setVisibleImages] = useState([]);
   const [isLoading] = useState(false);
@@ -18,7 +18,6 @@ export default function App() {
 
   useEffect(() => {
     getData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery, page]);
   useEffect(() => {
     handleScroll();
@@ -28,32 +27,32 @@ export default function App() {
     setIsOpenModal(!openModal);
   };
 
-  const hadleChangeQuery = query => {
+  const hadleChangeQuery = (query) => {
     setSearchQuery(query);
     setPage(1);
     setVisibleImages([]);
   };
 
   const getData = () => {
-    if (searchQuery !== '' || page !== 1) {
+    if (searchQuery !== "" || page !== 1) {
       fetchImages(searchQuery, page)
         .then(({ hits }) => setVisibleImages([...visibleImages, ...hits]))
         .then(handleScroll)
-        .catch(error => console.log(error.message));
+        .catch((error) => console.log(error.message));
     }
   };
 
   const handleNextPage = () => {
-    setPage(prevState => prevState + 1);
+    setPage((prevState) => prevState + 1);
   };
 
   const handleScroll = () => {
     window.scrollTo({
       top: document.documentElement.scrollHeight,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
-  const modalContentSet = itemId => {
+  const modalContentSet = (itemId) => {
     const element = visibleImages.find(({ id }) => id === itemId);
     console.log(element);
     setModalContent(element.largeImageURL);
