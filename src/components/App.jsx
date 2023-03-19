@@ -18,6 +18,7 @@ export default function App() {
 
   useEffect(() => {
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery, page]);
   useEffect(() => {
     handleScroll();
