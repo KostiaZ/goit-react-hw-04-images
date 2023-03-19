@@ -18,6 +18,7 @@ export default function App() {
 
   useEffect(() => {
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery, page]);
   useEffect(() => {
     handleScroll();
@@ -26,10 +27,6 @@ export default function App() {
   const toggleModal = () => {
     setIsOpenModal(!openModal);
   };
-
-  // const toggleLoading = () => {
-  //   setIsLoading(!isLoading);
-  // };
 
   const hadleChangeQuery = query => {
     setSearchQuery(query);
